@@ -1,0 +1,26 @@
+# Виртуальное окружение — не нужно в контейнере
+.venv
+
+# Python-кэш
+__pycache__
+*.pyc
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# ENV (секреты, не коммитим)
+.env
+.env.*
+
+# IDE
+.vscode
+.idea
+
+# WSL-специфичное (если есть)
+lib64
