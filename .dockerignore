@@ -1,4 +1,4 @@
-# Виртуальное окружение — не нужно в контейнере
+# Виртуальное окружение
 .venv
 
 # Python-кэш
@@ -14,7 +14,7 @@ Dockerfile
 .dockerignore
 docker-compose.yml
 
-# ENV (секреты, не коммитим)
+# ENV
 .env
 .env.*
 
@@ -22,5 +22,5 @@ docker-compose.yml
 .vscode
 .idea
 
-# WSL-специфичное (если есть)
+# WSL
 lib64
