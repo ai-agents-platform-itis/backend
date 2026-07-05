@@ -2,7 +2,7 @@ FROM python:3.14-slim
 
 WORKDIR /app
 
-# Системные зависимости для asyncpg
+# Системные зависимости
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libpq-dev \
@@ -28,5 +28,5 @@ ENV PYTHONUNBUFFERED=1
 
 EXPOSE 8000
 
-# Запускаем миграции и сервер
+# Миграции + запуск
 CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
