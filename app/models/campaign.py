@@ -19,9 +19,9 @@ class Campaign(Base):
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
 
-    # Связи (добавим позже, когда будут другие модели)
-    # leads = relationship("Lead", back_populates="campaign")
-    # dialogs = relationship("Dialog", back_populates="campaign")
+
+    leads = relationship("Lead", back_populates="campaign")
+    dialogs = relationship("Dialog", back_populates="campaign")
 
     def __repr__(self):
         return f"<Campaign(id={self.id}, name='{self.name}', niche='{self.niche_type}')>"
