@@ -1,4 +1,4 @@
-from fastapi import APIRouter, FastAPI, Query
+from fastapi import APIRouter, Query
 from ai_scenario import generate_scenario
 from ollama_client import OllamaClient
 import os
