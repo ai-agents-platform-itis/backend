@@ -18,7 +18,7 @@ class DocumentStore:
 
     def add_document(
         self,
-        campaign_id: UUID,
+        campaign_id: int,
         document_id: UUID,
         filename: str,
         text: str
@@ -41,7 +41,7 @@ class DocumentStore:
         chunk_ids = [f"{campaign_id}:{document_id}:{index}" for index in range(len(chunks))]
         self.vector_store.add_documents(documents, ids=chunk_ids)
 
-    def get_document(self, campaign_id: UUID, document_id: UUID):
+    def get_document(self, campaign_id: int, document_id: UUID):
         return self.vector_store.get(
         where={
             "$and": [
@@ -52,22 +52,20 @@ class DocumentStore:
         include=["documents", "metadatas"]
         )
 
-    def search(self, campaign_id: UUID, query: str, limit: int = 5):
+    def search(self, campaign_id: int, query: str, limit: int = 5):
         return self.vector_store.similarity_search(
             query=query,
             k=limit,
             filter={"campaign_id": str(campaign_id)}
         )
 
-
-    def delete_document(self, campaign_id: UUID, document_id: UUID) -> None:
+    def delete_document(self, campaign_id: int, document_id: UUID) -> None:
         self.vector_store.delete(where={"$and": [{"campaign_id": str(campaign_id)}, {"document_id": str(document_id)}]})
 
+    def update_document(self, campaign_id: int, document_id: UUID, new_text: str) -> None:
+        self.delete_document(campaign_id, document_id)
+        self.add_document(campaign_id, document_id, f"{document_id}.txt", new_text)
 
     @staticmethod
     def get_file_extension(filename: str) -> str:
         return filename.split('.')[-1].lower()
-
-    def update_document(self, campaign_id: UUID, document_id: UUID, new_text: str) -> None:
-        self.delete_document(campaign_id, document_id)
-        self.add_document(campaign_id, document_id, f"{document_id}.txt", new_text)
