@@ -47,7 +47,7 @@ class SearchResult(BaseModel):
     status_code=status.HTTP_201_CREATED,
 )
 def create_document(
-    campaign_id: UUID,
+    campaign_id: int,
     payload: DocumentCreate,
     store: DocumentStoreDep,
 ) -> DocumentResponse:
@@ -69,7 +69,7 @@ def create_document(
 
 @router.get("/{document_id}", response_model=DocumentResponse)
 def get_document(
-    campaign_id: UUID,
+    campaign_id: int,
     document_id: UUID,
     store: DocumentStoreDep,
 ) -> DocumentResponse:
@@ -92,7 +92,7 @@ def get_document(
 
 @router.put("/{document_id}", response_model=DocumentResponse)
 def update_document(
-    campaign_id: UUID,
+    campaign_id: int,
     document_id: UUID,
     payload: DocumentUpdate,
     store: DocumentStoreDep,
@@ -115,7 +115,7 @@ def update_document(
     status_code=status.HTTP_204_NO_CONTENT,
 )
 def delete_document(
-    campaign_id: UUID,
+    campaign_id: int,
     document_id: UUID,
     store: DocumentStoreDep,
 ) -> Response:
@@ -129,7 +129,7 @@ def delete_document(
 
 @router.post("/search", response_model=list[SearchResult])
 def search_documents(
-    campaign_id: UUID,
+    campaign_id: int,
     payload: DocumentSearchRequest,
     store: DocumentStoreDep,
 ) -> list[SearchResult]:
