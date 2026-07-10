@@ -4,7 +4,7 @@ from uuid import UUID, uuid4
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from pydantic import BaseModel
 
-from rag import DocumentStore, get_document_store
+from ai_core.rag import DocumentStore, get_document_store
 
 router = APIRouter(prefix="/rag", tags=["RAG"])
 

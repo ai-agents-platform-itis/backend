@@ -1,9 +1,9 @@
 from dotenv import load_dotenv
 from fastapi import APIRouter
 
-from api.routers.ai_scenario import router as ai_scenario_router
-from api.routers.chatting import router as chatting_router
-from api.routers.rag import router as rag_router
+from ai_core.api.routers.ai_scenario import router as ai_scenario_router
+from ai_core.api.routers.chatting import router as chatting_router
+from ai_core.api.routers.rag import router as rag_router
 
 load_dotenv()
 

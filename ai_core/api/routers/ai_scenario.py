@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
-from scenario import ScenarioMaster, get_scenario_master
+from ai_core.scenario import ScenarioMaster, get_scenario_master
 
 router = APIRouter(prefix="/ai", tags=["AI"])
 

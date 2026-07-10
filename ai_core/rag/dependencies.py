@@ -3,7 +3,7 @@ from functools import lru_cache
 
 from langchain_ollama import OllamaEmbeddings
 
-from rag.document_store import DocumentStore
+from .document_store import DocumentStore
 
 
 @lru_cache(maxsize=1)
