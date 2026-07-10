@@ -27,7 +27,7 @@ class Chatting:
             ]
         )
 
-    async def answer_question(self, campaign_id: int, query: str, limit=5):
+    async def answer_question(self, campaign_id: int, query: str, limit=5) -> str:
         documents = self.store.search(campaign_id=campaign_id, query=query, limit=limit)
 
         if not documents:
@@ -49,4 +49,5 @@ class Chatting:
             }
         )
 
-        return await self.llm.ainvoke(messages)
+        resp = await self.llm.ainvoke(messages)
+        return resp['content']
