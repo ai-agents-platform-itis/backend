@@ -1,6 +1,6 @@
 from sqlalchemy import String, Integer, DateTime, func, ForeignKey
 from sqlalchemy.dialects.postgresql import JSONB
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
 import datetime
 
@@ -17,6 +17,8 @@ class Lead(Base):
     created_at: Mapped[datetime.datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
+    campaign = relationship("Campaign", back_populates="leads")
+    dialogs = relationship("Dialog", back_populates="lead")
 
     def __repr__(self):
         return f"<Lead(id={self.id}, source='{self.source}', contact='{self.contact}', status='{self.status}')>"

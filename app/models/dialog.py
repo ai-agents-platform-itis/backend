@@ -1,5 +1,5 @@
 from sqlalchemy import String, Integer, DateTime, func, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
 import datetime
 
@@ -17,6 +17,9 @@ class Dialog(Base):
     finished_at: Mapped[datetime.datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True
     )
+    campaign = relationship("Campaign", back_populates="dialogs")
+    lead = relationship("Lead", back_populates="dialogs")
+
 
     def __repr__(self):
         return f"<Dialog(id={self.id}, lead_id={self.lead_id}, status='{self.status}')>"
