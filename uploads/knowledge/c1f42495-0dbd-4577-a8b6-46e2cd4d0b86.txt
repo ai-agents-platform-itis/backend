@@ -1,0 +1,113 @@
+kernel logs :
+
+
+app logs :
+
+<2>0days,00:00:18[FIREWALL]stop
+<2>0days,00:00:19[OTHER]wan interface physically connected
+<2>0days,00:00:29[FIREWALL]start
+<3>0days,00:00:39[GUEST NETWORK]Module start.
+<2>0days,00:00:42[FIREWALL]start
+<2>0days,00:00:47[PPP]pppoe_init() success
+<3>0days,00:00:47[PPP]PPPoE DevName Hook, the name is nic-eth0.2
+<3>0days,00:00:47[PPP]make the channel with pppoe_channel
+<3>0days,00:00:47[PPP]PPPoE DevName Hook, the name is nic-eth0.2
+<2>0days,00:00:47[PPP]Using interface ppp0
+<2>0days,00:00:47[PPP]main 423 ipv6 = 0
+
+<2>0days,00:00:47[PPP]main 521 
+
+<3>0days,00:00:47[PPP]pppd 2.4.3 started by root, uid 0
+<3>0days,00:00:47[PPP]PPPoE Connect Device
+<2>0days,00:00:47[PPP]sent [PADI Host-Uniq(0x00000ea0)]
+<2>0days,00:00:47[PPP]rcvd [PADO AC-Name:KZN-MTTS-SG16-13 AC-MAC:80:e0:1d:cd:9a:40]
+<2>0days,00:00:47[PPP]sent [PADR Host-Uniq(0x00000ea0)]
+<2>0days,00:00:47[PPP]rcvd [PADS sess-id(13159)]
+<2>0days,00:00:47[PPP]PPP session is 13159
+<2>0days,00:00:47[PPP]Yangxv:new style driver
+
+<2>0days,00:00:47[PPP]Using interface ppp0
+<3>0days,00:00:47[PPP]Connect: pppoe-internet <--> eth0.2
+<2>0days,00:00:47[PPP]sent [LCP Req mru=1480 magic=0x9ca2093f]
+<2>0days,00:00:47[PPP]rcvd [LCP Req mru=1492 auth=pap magic=0x4f41bcfd]
+<2>0days,00:00:47[PPP]sent [LCP Ack mru=1492 auth=pap magic=0x4f41bcfd]
+<2>0days,00:00:47[PPP]rcvd [LCP Nak mru=1492]
+<2>0days,00:00:47[PPP]sent [LCP Req mru=1492 magic=0x9ca2093f]
+<2>0days,00:00:47[PPP]rcvd [LCP Ack mru=1492 magic=0x9ca2093f]
+<2>0days,00:00:47[PPP]sent [PAP AuthReq user="F1941319" password=(hidden)]
+<2>0days,00:00:47[PPP]sent [LCP code=0xc]
+<2>0days,00:00:47[PPP]rcvd [PAP AuthAck ""]
+<3>0days,00:00:47[PPP]PAP authentication succeeded
+<3>0days,00:00:47[PPP]peer from calling number 80:E0:1D:CD:9A:40 authorized
+<2>0days,00:00:47[PPP]sent [IPCP Req addr=0.0.0.0 dns1=0.0.0.0 dns3=0.0.0.0]
+<2>0days,00:00:47[PPP]rcvd [IPCP Req addr=10.16.255.152]
+<2>0days,00:00:47[PPP]sent [IPCP Ack addr=10.16.255.152]
+<2>0days,00:00:47[PPP]rcvd [IPCP Nak addr=10.165.58.118 dns1=89.232.109.74 dns3=217.23.177.252]
+<2>0days,00:00:47[PPP]sent [IPCP Req addr=10.165.58.118 dns1=89.232.109.74 dns3=217.23.177.252]
+<2>0days,00:00:48[PPP]rcvd [IPCP Ack addr=10.165.58.118 dns1=89.232.109.74 dns3=217.23.177.252]
+<6>0days,00:00:48[PPP]
+
+ipcpup : ipcp_wantoptions[0].default_route = 1
+
+<6>0days,00:00:48[PPP]
+
+delete old gateway
+
+<3>0days,00:00:48[PPP]local  IP address 10.165.58.118
+<3>0days,00:00:48[PPP]remote IP address 10.16.255.152
+<3>0days,00:00:48[PPP]primary   DNS address 89.232.109.74
+<3>0days,00:00:48[PPP]secondary DNS address 217.23.177.252
+<3>0days,00:00:48[PPP]obtained ip 10.165.58.118
+<3>0days,00:00:48[PPP]remote ip is 10.16.255.152
+<2>0days,00:00:49[FIREWALL]stop
+<2>0days,00:00:54[FIREWALL]start
+<2>0days,00:00:55[DHCPD]Recv DISCOVER from B6:50:27:4C:D4:BF
+<4>0days,00:00:57[DHCPD]host name not found
+<2>0days,00:00:57[DHCPD]Send OFFER of 192.168.1.100
+<2>0days,00:00:57[FIREWALL]stop
+<2>0days,00:00:59[DHCPD]Recv REQUEST from B6:50:27:4C:D4:BF
+<2>0days,00:00:59[DHCPD]requested_ip is 0xc0a80164, lease_ip is 0xc0a80164
+<2>0days,00:00:59[DHCPD]Send ACK to 192.168.1.100
+<4>0days,00:00:59[DHCPD]host name not found
+<2>0days,00:01:01[FIREWALL]start
+<2>0days,00:01:03[DHCPD]Recv DISCOVER from 28:33:34:3F:A5:4A
+<2>0days,00:01:05[DHCPD]Send OFFER of 192.168.1.101
+<2>0days,00:01:05[DHCPD]Recv DISCOVER from 28:33:34:3F:A5:4A
+<2>0days,00:01:05[DHCPD]Send OFFER of 192.168.1.101
+<2>0days,00:01:07[DHCPD]Recv REQUEST from 28:33:34:3F:A5:4A
+<2>0days,00:01:07[DHCPD]requested_ip is 0xc0a80165, lease_ip is 0xc0a80165
+<2>0days,00:01:07[DHCPD]Send ACK to 192.168.1.101
+<2>0days,00:01:09[DHCPD]Recv REQUEST from 28:33:34:3F:A5:4A
+<2>0days,00:01:09[DHCPD]requested_ip is 0xc0a80165, lease_ip is 0xc0a80165
+<2>0days,00:01:09[DHCPD]Send ACK to 192.168.1.101
+<2>0days,00:01:10[DHCPD]Recv REQUEST from 10:91:D1:C4:36:96
+<2>0days,00:01:10[DHCPD]REQUEST IP 192.168.1.102 is rejected by other reason
+<2>0days,00:01:10[DHCPD]Send NAK
+<2>0days,00:01:11[DHCPD]Recv DISCOVER from 10:91:D1:C4:36:96
+<2>0days,00:01:13[DHCPD]Send OFFER of 192.168.1.102
+<2>0days,00:01:15[DHCPD]Recv REQUEST from 10:91:D1:C4:36:96
+<2>0days,00:01:15[DHCPD]requested_ip is 0xc0a80166, lease_ip is 0xc0a80166
+<2>0days,00:01:15[DHCPD]Send ACK to 192.168.1.102
+<2>0days,00:01:23[DHCPD]Recv DISCOVER from 1E:0D:97:E4:D6:5D
+<2>0days,00:01:25[DHCPD]Send OFFER of 192.168.1.103
+<2>0days,00:01:27[DHCPD]Recv REQUEST from 1E:0D:97:E4:D6:5D
+<2>0days,00:01:27[DHCPD]requested_ip is 0xc0a80167, lease_ip is 0xc0a80167
+<2>0days,00:01:27[DHCPD]Send ACK to 192.168.1.103
+<2>0days,00:20:40[DHCPD]Recv REQUEST from E2:71:E7:89:87:CA
+<2>0days,00:20:40[DHCPD]REQUEST IP 192.168.1.105 is rejected by other reason
+<2>0days,00:20:40[DHCPD]Send NAK
+<2>0days,00:20:42[DHCPD]Recv REQUEST from E2:71:E7:89:87:CA
+<2>0days,00:20:42[DHCPD]REQUEST IP 192.168.1.105 is rejected by other reason
+<2>0days,00:20:42[DHCPD]Send NAK
+<2>0days,00:20:42[DHCPD]Recv DISCOVER from E2:71:E7:89:87:CA
+<2>0days,00:20:44[DHCPD]Send OFFER of 192.168.1.105
+<2>0days,00:20:44[DHCPD]Recv DISCOVER from E2:71:E7:89:87:CA
+<2>0days,00:20:44[DHCPD]Send OFFER of 192.168.1.105
+<2>0days,00:20:44[DHCPD]Recv DISCOVER from E2:71:E7:89:87:CA
+<2>0days,00:20:44[DHCPD]Send OFFER of 192.168.1.105
+<2>0days,00:20:46[DHCPD]Recv REQUEST from E2:71:E7:89:87:CA
+<2>0days,00:20:46[DHCPD]requested_ip is 0xc0a80169, lease_ip is 0xc0a80169
+<2>0days,00:20:46[DHCPD]Send ACK to 192.168.1.105
+<2>0days,00:20:48[DHCPD]Recv REQUEST from E2:71:E7:89:87:CA
+<2>0days,00:20:48[DHCPD]requested_ip is 0xc0a80169, lease_ip is 0xc0a80169
+<2>0days,00:20:48[DHCPD]Send ACK to 192.168.1.105

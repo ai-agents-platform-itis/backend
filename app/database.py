@@ -16,7 +16,15 @@ def form_db_url() -> str:
     ).render_as_string(hide_password=False)
 
 
-engine = create_async_engine(form_db_url(), echo=settings.app.debug)
+engine = create_async_engine(
+    form_db_url(),
+    echo=settings.app.debug,
+    future=True,
+    pool_size=20,  # Максимальное количество соединений в пуле
+    max_overflow=10,  # Дополнительные соединения сверх pool_size
+    pool_pre_ping=True,  # Проверка соединения перед использованием
+    pool_recycle=3600,
+)
 
 async_session = async_sessionmaker(
     engine,

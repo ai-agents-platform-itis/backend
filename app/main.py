@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from app.config import settings
-from app.routers import health, campaigns, leads, dialogs, knowledge
+from app.routers import health, campaigns, leads, dialogs, knowledge, stats, logs
 
 app = FastAPI(
     title=settings.app.name,
@@ -15,12 +15,14 @@ app.include_router(campaigns.router)
 app.include_router(leads.router)
 app.include_router(dialogs.router)
 app.include_router(knowledge.router)
+app.include_router(stats.router)
+app.include_router(logs.router)
 
 
 @app.on_event("startup")
 async def startup_event():
     print(f"🚀 {settings.app.name} запущен!")
-    print(f"📚 Swagger docs: http://localhost:8000/docs")
+    print("📚 Swagger docs: http://localhost:8000/docs")
     print(f"🗄️  База данных: {settings.db.host}:{settings.db.port}/{settings.db.name}")
 
 

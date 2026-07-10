@@ -1,4 +1,4 @@
-from sqlalchemy import String, Boolean, DateTime, Text, func
+from sqlalchemy import String, Boolean, DateTime, Text, func, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
 import datetime
@@ -6,6 +6,10 @@ import datetime
 
 class Campaign(Base):
     __tablename__ = "campaigns"
+    __table_args__ = (
+        Index("idx_campaigns_niche_type", "niche_type"),
+        Index("idx_campaigns_is_active", "is_active"),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)

@@ -1,4 +1,4 @@
-from sqlalchemy import String, Integer, DateTime, Text, func, ForeignKey
+from sqlalchemy import String, Integer, DateTime, Text, func, ForeignKey, Index
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
 import datetime
@@ -6,6 +6,9 @@ import datetime
 
 class KnowledgeDoc(Base):
     __tablename__ = "knowledge_docs"
+    __table_args__ = (
+        Index("idx_knowledge_docs_campaign_id", "campaign_id"),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     campaign_id: Mapped[int] = mapped_column(
