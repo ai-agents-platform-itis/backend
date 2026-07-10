@@ -1,9 +1,9 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Query, Depends
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
-from scenario import get_scenario_master, ScenarioMaster
+from scenario import ScenarioMaster, get_scenario_master
 
 router = APIRouter(prefix="/ai", tags=["AI"])
 
@@ -20,13 +20,12 @@ class ScenarioCreate(BaseModel):
 
 @router.post("/generate_scenario")
 async def generate_scenario_endpoint(
-    scenario_master: ScenarioMasterDep,
-    payload: ScenarioCreate
+    scenario_master: ScenarioMasterDep, payload: ScenarioCreate
 ):
     scenario = await scenario_master.generate_scenario(
         topic=payload.topic,
         duration_sec=payload.duration_sec,
         style=payload.style,
-        temperature=payload.temperature
+        temperature=payload.temperature,
     )
     return scenario.model_dump()

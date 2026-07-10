@@ -50,4 +50,4 @@ class Chatting:
         )
 
         resp = await self.llm.ainvoke(messages)
-        return resp['content']
+        return resp["content"]

@@ -21,7 +21,9 @@ class ScenarioMaster:
         self.llm_client = llm_client
 
     @staticmethod
-    def build_user_prompt(topic: str, duration_sec: int, style: str, audience: str) -> str:
+    def build_user_prompt(
+        topic: str, duration_sec: int, style: str, audience: str
+    ) -> str:
         return f"""/no_think
 
 
@@ -30,7 +32,7 @@ class ScenarioMaster:
 
     Важно:
     - Русский язык использовать только для title, voice_over.text и caption.text.
-    - Английский язык использовать только для visual.query и visual.fallback_image_prompt.
+    - Английский использовать только для visual.query и visual.fallback_image_prompt.
     - Не переводи voice_over.text и caption.text на английский.
 
     Тема: {topic}
@@ -76,8 +78,7 @@ class ScenarioMaster:
         try:
             return self.parse_scenario(content)
         except (json.JSONDecodeError, ValidationError) as error:
-            logger.error(
-                f"Error parsing scenario: {error}. Attempting to repair JSON.")
+            logger.error(f"Error parsing scenario: {error}. Attempting to repair JSON.")
             repair_messages = [
                 {"role": "system", "content": SCENARIO_META_PROMPT},
                 {
@@ -98,7 +99,7 @@ class ScenarioMaster:
 
             repaired = await self.llm_client.chat(repair_messages)
             logger.info(
-                "Repaired response from LLM:\n" +
-                f"{json.dumps(repaired.model_dump(), ensure_ascii=False, indent=2)}"
+                "Repaired response from LLM:\n"
+                + f"{json.dumps(repaired.model_dump(), ensure_ascii=False, indent=2)}"
             )
             return self.parse_scenario(repaired["message"]["content"])
