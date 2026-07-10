@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from app.config import settings
-from app.routers import health, campaigns, leads, dialogs
+from app.routers import health, campaigns, leads, dialogs, knowledge
 
 app = FastAPI(
     title=settings.app.name,
@@ -14,6 +14,7 @@ app.include_router(health.router)
 app.include_router(campaigns.router)
 app.include_router(leads.router)
 app.include_router(dialogs.router)
+app.include_router(knowledge.router)
 
 
 @app.on_event("startup")
