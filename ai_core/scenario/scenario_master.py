@@ -1,5 +1,6 @@
 import json
 import logging
+from pathlib import Path
 
 from pydantic import ValidationError
 
@@ -7,9 +8,12 @@ from .models import Scenario
 
 logger = logging.getLogger("ai_scenario")
 
+AI_CORE_DIR = Path(__file__).resolve().parents[1]
+PROMPTS_DIR = AI_CORE_DIR / "prompts"
+
 
 def load_scenario_meta_prompt() -> str:
-    with open("prompts/AI_SCENARIO.md", "r", encoding="utf-8") as f:
+    with open(PROMPTS_DIR / "AI_SCENARIO.md", "r", encoding="utf-8") as f:
         return f.read()
 
 

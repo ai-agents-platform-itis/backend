@@ -2,7 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, FastAPI, Query
 
-from chatting import Chatting, get_chatting
+from ai_core.chatting import Chatting, get_chatting
 
 app = FastAPI(title="Chatting", version="1.0.0")
 router = APIRouter(prefix="/chatting", tags=["CHATTING"])

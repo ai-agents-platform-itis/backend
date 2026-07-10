@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.config import settings
 from app.routers import health, campaigns, leads, dialogs, knowledge, stats, logs
+from ai_core.api.app import app as ai_core_router
 
 app = FastAPI(
     title=settings.app.name,
@@ -17,6 +18,7 @@ app.include_router(dialogs.router)
 app.include_router(knowledge.router)
 app.include_router(stats.router)
 app.include_router(logs.router)
+app.include_router(ai_core_router)
 
 
 @app.on_event("startup")

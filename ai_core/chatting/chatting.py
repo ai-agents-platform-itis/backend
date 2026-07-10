@@ -1,11 +1,16 @@
 import os
+from pathlib import Path
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import ChatOllama
 
-from rag import DocumentStore, get_document_store
+from ai_core.rag import DocumentStore, get_document_store
 
-with open("prompts/CHATTING.md") as f:
+
+AI_CORE_DIR = Path(__file__).resolve().parents[1]
+PROMPTS_DIR = AI_CORE_DIR / "prompts"
+
+with open(PROMPTS_DIR / "CHATTING.md") as f:
     CHATTING_PROMPT = f.read()
 
 
