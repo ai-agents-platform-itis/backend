@@ -1,4 +1,4 @@
-from sqlalchemy import String, Integer, DateTime, Text, func, ForeignKey
+from sqlalchemy import String, Integer, DateTime, Text, func, ForeignKey, Index
 from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
 import datetime
@@ -6,6 +6,10 @@ import datetime
 
 class Message(Base):
     __tablename__ = "messages"
+    __table_args__ = (
+        Index("idx_messages_dialog_id", "dialog_id"),
+        Index("idx_messages_timestamp", "timestamp"),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     dialog_id: Mapped[int] = mapped_column(Integer, ForeignKey("dialogs.id"), nullable=False)
