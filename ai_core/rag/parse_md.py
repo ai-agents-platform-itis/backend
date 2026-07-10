@@ -1,10 +1,9 @@
+import json
+import logging
 import os
 import re
-import json
 import string
-import logging
-from typing import Dict, Any, List
-
+from typing import Any, Dict, List
 
 logger = logging.getLogger(__name__)
 
@@ -72,7 +71,7 @@ def parse_markdown(content: str) -> Dict[str, Any]:
 
     # Добавляем заголовки как отдельные поля
     for i, title in enumerate(section_titles):
-        metadata[f"section_{i+1}"] = title
+        metadata[f"section_{i + 1}"] = title
 
     return {"text": full_text, "metadata": metadata}
 
@@ -107,5 +106,5 @@ def process_all_markdown(input_folder: str, output_folder: str) -> None:
                     logger.error(f"Ошибка при обработке файла {file_name}: {e}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     process_all_markdown(input_folder="input_md", output_folder="parsed_output_md")

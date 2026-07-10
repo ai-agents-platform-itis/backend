@@ -1,16 +1,12 @@
-from fastapi import APIRouter, FastAPI, HTTPException, Query, Depends, Response, status
-from langchain_ollama import OllamaEmbeddings
-from pydantic import BaseModel
 from typing import Annotated
 from uuid import UUID, uuid4
-from dotenv import load_dotenv
-load_dotenv()
-from rag import get_document_store, DocumentStore
 
+from fastapi import APIRouter, Depends, HTTPException, Response, status
+from pydantic import BaseModel
 
-app = FastAPI(title="RAG API", version="1.0.0")
+from rag import DocumentStore, get_document_store
+
 router = APIRouter(prefix="/rag", tags=["RAG"])
-app.include_router(router)
 
 DocumentStoreDep = Annotated[DocumentStore, Depends(get_document_store)]
 
