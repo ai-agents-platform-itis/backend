@@ -1,25 +1,32 @@
-import os
+from typing import Annotated
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Depends
+from pydantic import BaseModel
 
-from ai_scenario import generate_scenario
-from ollama_client import OllamaClient
+from scenario import get_scenario_master, ScenarioMaster
 
 router = APIRouter(prefix="/ai", tags=["AI"])
-llm_client = OllamaClient(
-    model_name=os.getenv("OLLAMA_MODEL"),
-    base_url=os.getenv("OLLAMA_BASE_URL") or "http://localhost:11434",
-)
 
 
-@router.get("/generate_scenario")
+ScenarioMasterDep = Annotated[ScenarioMaster, Depends(get_scenario_master)]
+
+
+class ScenarioCreate(BaseModel):
+    topic: str
+    duration_sec: int
+    style: str
+    temperature: float = 0.5
+
+
+@router.post("/generate_scenario")
 async def generate_scenario_endpoint(
-    topic: str = Query(..., description="Тема видео"),
-    duration_sec: int = Query(..., description="Длительность видео в секундах"),
-    style: str = Query(..., description="Стиль видео"),
-    temperature: float = Query(0.5, description="Температура генерации"),
+    scenario_master: ScenarioMasterDep,
+    payload: ScenarioCreate
 ):
-    scenario = await generate_scenario(
-        llm_client, topic, duration_sec, style, temperature
+    scenario = await scenario_master.generate_scenario(
+        topic=payload.topic,
+        duration_sec=payload.duration_sec,
+        style=payload.style,
+        temperature=payload.temperature
     )
     return scenario.model_dump()
